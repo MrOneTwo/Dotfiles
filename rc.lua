@@ -59,7 +59,7 @@ run_once({ "unclutter -root" }) -- entries must be comma-separated
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "powerarrow"
+local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvt"
@@ -445,8 +445,36 @@ globalkeys = awful.util.table.join(
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
-              {description = "lua execute prompt", group = "awesome"})
+              {description = "lua execute prompt", group = "awesome"}),
     --]]
+    
+    -- Additional keys
+    -- Laptop screen brightness
+    awful.key({ }, "#232", function () awful.util.spawn("xbacklight -dec 10") end),
+    awful.key({ }, "#233", function () awful.util.spawn("xbacklight -inc 10") end),
+    -- awful.key({ }, "#232", function () awful.util.spawn("xrandr --output eDP1 --brightness 0.5") end),
+    -- awful.key({ }, "#233", function () awful.util.spawn("xrandr --output eDP1 --brightness 1.0") end)
+      
+    -- Laptop volume keys (Fn + key)
+    awful.key({ }, "#123",
+        function ()
+            os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
+    awful.key({ }, "#122",
+        function ()
+            os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
+    awful.key({ }, "#121",
+        function ()
+            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
+
+    -- Laptop additional keys
+    awful.key({ }, "#165", function () awful.util.spawn("nautilus") end),
+    awful.key({ }, "#148", function () awful.util.spawn("gnome-calculator") end)
 )
 
 clientkeys = awful.util.table.join(
@@ -563,11 +591,11 @@ awful.rules.rules = {
       properties = { titlebars_enabled = true } },
 
     -- Set Firefox to always map on the first tag on screen 1.
-    { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = screen[1].tags[1] } },
+    -- { rule = { class = "Firefox" },
+      -- properties = { screen = 1, tag = screen[1].tags[1] } },
 
-    { rule = { class = "Gimp", role = "gimp-image-window" },
-          properties = { maximized = true } },
+    -- { rule = { class = "Gimp", role = "gimp-image-window" },
+          -- properties = { maximized = true } },
 }
 -- }}}
 
