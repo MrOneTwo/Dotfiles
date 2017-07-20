@@ -364,7 +364,8 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ altkey }, "m",
         function ()
-            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            -- os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            os.execute(string.format("amixer -D pulse set Master toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
@@ -468,7 +469,8 @@ globalkeys = awful.util.table.join(
         end),
     awful.key({ }, "#121",
         function ()
-            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            -- os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            os.execute(string.format("amixer -D pulse set Master toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
             beautiful.volume.update()
         end),
 
