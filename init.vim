@@ -219,6 +219,7 @@ map <leader>o :Files<CR>
 map <leader>b :Buffers<CR>
 map <leader>l :Lines<CR>
 
+map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 """ My snippets
