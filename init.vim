@@ -17,6 +17,7 @@ let g:airline#extensions#tabline#enabled = 1 " Enable the list of buffers
 
 Plug 'airblade/vim-gitgutter'
 Plug 'sjl/badwolf'
+Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'godlygeek/tabular'
 Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
@@ -163,6 +164,13 @@ set t_Co=256
 " colors zenburn
 " colors goodwolf
 colors badwolf
+
+" quantum
+set background=dark
+set termguicolors
+colorscheme quantum
+let g:quantum_italics=1
+let g:airline_theme='quantum'
 
 filetype plugin indent on
 set tabstop=4
