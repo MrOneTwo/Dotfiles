@@ -31,16 +31,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'majutsushi/tagbar'
 
-Plugin 'scrooloose/syntastic'
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 Plugin 'scrooloose/nerdcommenter'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -57,6 +47,7 @@ Plugin 'vimwiki/vimwiki'
 
 
 " ---------------------------- SNIPPETS
+"  
 " Track the engine.
 Plugin 'SirVer/ultisnips'
 
@@ -67,6 +58,7 @@ Plugin 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsListSnippets="<c-s>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -94,8 +86,8 @@ filetype plugin indent on    " required
 syntax enable
 filetype plugin on
 
-" FINDING FILES:
-
+" ---------------------------- FINDING FILES
+"  
 " Search down into subfolders
 " Provides tab-completion for all file-related tasks
 set path+=**
@@ -216,6 +208,8 @@ set foldnestmax=10
 " backspace over everything in insert mode
 set backspace=indent,eol,start
 
+" auto indentation
+set cino+=(0
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -223,7 +217,6 @@ set backspace=indent,eol,start
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " let mapleader=","
-" inoremap jk <esc>
 nnoremap j gj
 nnoremap k gk
 
@@ -241,6 +234,24 @@ map <C-m> :TagbarOpenAutoClose<CR>
 map <leader>o :Files<CR>
 map <leader>b :Buffers<CR>
 map <leader>l :Lines<CR>
+
+map <F8> :w <CR> :!gcc % -o %< && ./%< <CR>
+
+
+"
+" Syntastic error window toggle
+"
+" function! ToggleErrors()
+    " let old_last_winnr = winnr('$')
+    " lclose
+    " if old_last_winnr == winnr('$')
+        " " Nothing was closed, open syntastic error location panel
+        " Errors
+    " endif
+" endfunction
+
+" nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -276,6 +287,10 @@ autocmd FileType ledger map <leader>ztm
     \ o    Expenses:ZTM                                      <Esc>kddpkJA PLN<Esc>kkk
     \ :r! date "+\%Y/\%m/\%d"<CR>A * ZTM<Esc>jjj
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""
+""" GDSCRIPT
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 " syntax improvement for Godot Engine
 " not sure it works
 let g:tagbar_type_gdscript = {
