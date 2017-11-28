@@ -2,57 +2,43 @@
 " Michal Ciesielski Vimrc configuration
 """""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set nocompatible              " be iMproved, required
+set nocompatible
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
-""" START Vundle Configuration
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+call plug#begin('~/.vim/plugged')
 
-" Disable file type for vundle
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-Plugin 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline'
 set laststatus=2
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 
-Plugin 'airblade/vim-gitgutter'
-Plugin 'sjl/badwolf'
-Plugin 'godlygeek/tabular'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'majutsushi/tagbar'
+Plug 'airblade/vim-gitgutter'
+Plug 'sjl/badwolf'
+Plug 'godlygeek/tabular'
+Plug 'easymotion/vim-easymotion'
+Plug 'majutsushi/tagbar'
 
-Plugin 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdcommenter'
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
 
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
-Plugin 'junegunn/fzf', {'dir': '~/.fzf', 'do': '/.install --all' }
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/limelight.vim'
+Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': '/.install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/limelight.vim'
 
-Plugin 'tpope/vim-fugitive'
-Plugin 'vimwiki/vimwiki'
+Plug 'tpope/vim-fugitive'
+Plug 'vimwiki/vimwiki'
 
+
+Plug 'SirVer/ultisnips' " Track the engine.
+Plug 'honza/vim-snippets' " Snippets are separated from the engine. Add this if you want them:
+
+call plug#end()
 
 
 " ---------------------------- SNIPPETS
 "  
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -64,11 +50,6 @@ let g:UltiSnipsListSnippets="<c-s>"
 let g:UltiSnipsEditSplit="vertical"
 " ----------------------------
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
