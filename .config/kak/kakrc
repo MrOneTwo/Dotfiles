@@ -1,0 +1,93 @@
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+# Install this to get readtags
+# Void Linux, install: automake
+# https://github.com/universal-ctags/ctags
+
+set global tabstop     2
+set global indentwidth 2
+
+# The termcmd is option of the x11 module.
+# See x11.kak to see its options.
+hook global ModuleLoaded x11 %{
+    # You can print this variable with :echo %opt{termcmd}
+    # In the shell expansion you refer to this option with kak_opt_termcmd.
+    set-option global termcmd "sakura -x"
+}
+
+define-command -hidden -params 1.. bspwm-new-impl %{
+  evaluate-commands %sh{
+    if [ -z "$kak_opt_termcmd" ]; then
+      echo "echo -markup '{Error}termcmd option is not set'"
+      exit
+    fi
+    bspwm_split="$1"
+    shift
+    # Clone the window with the same buffer, on the same line.
+    kakoune_args="-e 'execute-keys $@ :buffer <space> $kak_buffile <ret> $kak_cursor_line g'"
+    {
+      # echo $kak_opt_termcmd "kak -c $kak_session $kakoune_args" > /tmp/debug
+      exec $kak_opt_termcmd "kak -c $kak_session $kakoune_args"
+    } < /dev/null > /dev/null 2>&1 &
+  }
+}
+
+plug "alexherbo2/kakoune-dracula-theme" theme
+colorscheme dracula
+
+add-highlighter global/ number-lines -hlcursor
+add-highlighter global/ column 100 default,rgb:666688
+add-highlighter global/ regex \b(TODO|FIXME|XXX|NOTE)\b 0:default+b
+
+plug "andreyorst/tagbar.kak" config %{
+} defer "tagbar" %{
+  set-option global tagbar_sort false
+  set-option global tagbar_size 40
+  set-option global tagbar_display_anon false
+}
+
+# Map the fzf-mode but defer everything else to onModuleLoad fzf hook.
+plug "andreyorst/fzf.kak" config %{
+  map global normal <c-p> ': fzf-mode<ret>'
+} defer "fzf" %{
+}
+
+plug "https://gitlab.com/fsub/kakoune-mark" config %{
+}
+
+plug "danr/kakoune-easymotion" config %{
+  map global normal <c-e> ':enter-user-mode easymotion<ret>'
+}
+
+# Enable editor config.
+hook global BufOpenFile .* %{ editorconfig-load }
+hook global BufNewFile .* %{ editorconfig-load }
+
+# Column marker.
+hook global WinSetOption filetype=(markdown) %{
+  add-highlighter global/ column 100 default,rgb:666688
+}
+
+# Highlight the word under the cursor.
+declare-option -hidden regex curword
+set-face global CurWord default,rgb:4a4a4a
+
+# Highlight the words on which the cursor is.
+hook global NormalIdle .* %{
+  eval -draft %{ try %{
+    exec <space><a-i>w <a-k>\A\w+\z<ret>
+    set-option buffer curword "\b\Q%val{selection}\E\b"
+  } catch %{
+    set-option buffer curword ''
+  } }
+}
+add-highlighter global/ dynregex '%opt{curword}' 0:CurWord
+
+map global normal '#' :comment-line<ret>
+
+plug "https://github.com/TeddyDD/kakoune-wiki" config %{
+  wiki-setup '/home/mc/Desktop/wiki'
+}
+
+plug "https://github.com/alexherbo2/snippets" config %{
+}
