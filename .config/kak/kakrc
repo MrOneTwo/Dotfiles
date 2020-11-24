@@ -32,7 +32,7 @@ define-command -hidden -params 1.. bspwm-new-impl %{
   }
 }
 
-plug "alexherbo2/kakoune-dracula-theme" theme
+plug "dracula/kakoune" theme
 colorscheme dracula
 
 add-highlighter global/ number-lines -hlcursor
