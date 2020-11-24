@@ -91,3 +91,8 @@ plug "https://github.com/TeddyDD/kakoune-wiki" config %{
 
 plug "https://github.com/alexherbo2/snippets" config %{
 }
+
+# Currently ugrep doesn't work probably because of the different
+# output format. It would be worth moving the ugrep since its way
+# faster.
+set-option global grepcmd 'rg --column'
