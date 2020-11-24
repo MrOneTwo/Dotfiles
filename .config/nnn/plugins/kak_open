@@ -1,0 +1,3 @@
+file_path=$2/$1
+
+echo "evaluate-commands -client L edit ${file_path}" | kak -p a
