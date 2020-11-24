@@ -14,3 +14,15 @@
 - ctags
 - i3
 - nnn
+
+
+## Snippets
+
+I haven't implemented those in my workflow but those are very useful.
+
+Insert a branch name on the command line via fzf:
+
+```sh
+export FZF_CTRL_T_COMMAND=git branch --format="%(refname:short)"
+git branch -D <CTRL+T>
+```
