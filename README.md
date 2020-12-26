@@ -8,7 +8,7 @@
 
 ## Tools I depend on
 
-- ripgrep
+- ripgrep/ugrep
 - Kakoune
 - fzf
 - ctags
