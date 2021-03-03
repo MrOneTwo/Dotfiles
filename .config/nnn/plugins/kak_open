@@ -1,3 +1,13 @@
 file_path=$2/$1
 
-echo "evaluate-commands -client L edit ${file_path}" | kak -p a
+# All this sheningans below make the script more complicated and slightly
+# slower. You can hardcode the SESSION to 'a' if that bothers you.
+kak -clear
+# Grab the first session from the list. You can name your session 'a' to
+# be sure it'll be always used.
+SESSION=`kak -l | tr '\n' '\t' | awk '{print $1}'`
+echo $SESSION
+
+# The client is still hardcoded to 'L'.
+
+echo "evaluate-commands -client L edit ${file_path}" | kak -p $SESSION
