@@ -1,0 +1,38 @@
+set ssl_starttls = yes
+set ssl_force_tls = yes
+set use_from = yes
+set envelope_from = yes
+
+## Send options.
+set smtp_url = "smtps://your_email_address@gmail.com@smtp.gmail.com:465"
+set smtp_pass = "your_password"
+set realname = "Name Surname"
+set from = your_email_address@gmail.com
+set hostname = gmail.com
+
+## Receive options.
+set imap_user = "your_email_address@gmail.com"
+set imap_pass = "your_password"
+# folder can be a local dir but for Gmail it's "imaps://imap.gmail.com:993"
+set folder = "imaps://imap.gmail.com:993"
+# Folder where emails arrive.
+set spoolfile = +INBOX
+set postponed = +Drafts
+set record = +Sent
+
+bind index G imap-fetch-mail
+set editor = "kak"
+
+set sort_aux = last-date-received
+set sort = reverse-threads
+
+set sidebar_width=24
+set sidebar_visible=yes
+set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+# Check for unread, flagged, total messages count.
+set mail_check_stats
+
+mailboxes +INBOX +Work +Shopping
