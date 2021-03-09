@@ -15,10 +15,13 @@ set imap_user = "your_email_address@gmail.com"
 set imap_pass = "your_password"
 # folder can be a local dir but for Gmail it's "imaps://imap.gmail.com:993"
 set folder = "imaps://imap.gmail.com:993"
-# Folder where emails arrive.
-set spoolfile = +INBOX
-set postponed = +Drafts
+# Folder where emails arrive. The + before those labels means that it's folder + that field.
+# Look at postponed and trash. One is relative one is absolute.
+set spoolfile = "+INBOX"
 set record = +Sent
+set postponed = "+[Gmail]/Drafts"
+set trash = "+[Gmail]/Trash"
+set record = "+[Gmail]/Sent Mail"
 
 bind index G imap-fetch-mail
 set editor = "kak"
@@ -35,4 +38,19 @@ bind index,pager \CO sidebar-open
 # Check for unread, flagged, total messages count.
 set mail_check_stats
 
-mailboxes +INBOX +Work +Shopping
+mailboxes +INBOX +Work +Shopping +[Gmail]/Trash
+
+
+# From Google's website:
+#
+# a004 LIST "" "*"
+# * LIST (\HasNoChildren) "/" "INBOX"
+# * LIST (\Noselect \HasChildren) "/" "[Gmail]"
+# * LIST (\HasNoChildren \All) "/" "[Gmail]/All Mail"
+# * LIST (\HasNoChildren \Drafts) "/" "[Gmail]/Drafts"
+# * LIST (\HasNoChildren \Important) "/" "[Gmail]/Important"
+# * LIST (\HasNoChildren \Sent) "/" "[Gmail]/Sent Mail"
+# * LIST (\HasNoChildren \Junk) "/" "[Gmail]/Spam"
+# * LIST (\HasNoChildren \Flagged) "/" "[Gmail]/Starred"
+# * LIST (\HasNoChildren \Trash) "/" "[Gmail]/Trash"
+# a004 OK Success
