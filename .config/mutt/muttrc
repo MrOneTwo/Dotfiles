@@ -1,3 +1,6 @@
+# - CTRL + N/P navigates left pane
+# - N marks an email as unread
+
 set ssl_starttls = yes
 set ssl_force_tls = yes
 set use_from = yes
@@ -16,8 +19,8 @@ set imap_pass = "your_password"
 # folder can be a local dir but for Gmail it's "imaps://imap.gmail.com:993"
 set folder = "imaps://imap.gmail.com:993"
 # Folder where emails arrive. The + before those labels means that it's folder + that field.
-# Look at postponed and trash. One is relative one is absolute.
-set spoolfile = "+INBOX"
+# Look at spoolfile and postponed. One is absolute one is relative.
+set spoolfile = "imaps://imap.gmail.com:993/INBOX"
 set record = +Sent
 set postponed = "+[Gmail]/Drafts"
 set trash = "+[Gmail]/Trash"
