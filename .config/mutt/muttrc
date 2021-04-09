@@ -1,30 +1,38 @@
-# - CTRL + N/P navigates left pane
-# - N marks an email as unread
-
 set ssl_starttls = yes
 set ssl_force_tls = yes
 set use_from = yes
 set envelope_from = yes
 
 ## Send options.
-set smtp_url = "smtps://your_email_address@gmail.com@smtp.gmail.com:465"
+set smtp_url = "your_email_address@gmail.com@smtp.gmail.com:465"
 set smtp_pass = "your_password"
 set realname = "Name Surname"
 set from = your_email_address@gmail.com
 set hostname = gmail.com
 
-## Receive options.
-set imap_user = "your_email_address@gmail.com"
-set imap_pass = "your_password"
-# folder can be a local dir but for Gmail it's "imaps://imap.gmail.com:993"
-set folder = "imaps://imap.gmail.com:993"
-# Folder where emails arrive. The + before those labels means that it's folder + that field.
-# Look at spoolfile and postponed. One is absolute one is relative.
-set spoolfile = "imaps://imap.gmail.com:993/INBOX"
-set record = +Sent
-set postponed = "+[Gmail]/Drafts"
-set trash = "+[Gmail]/Trash"
-set record = "+[Gmail]/Sent Mail"
+#
+# Receive options.
+#
+# Receiving from IMAP can be done via mutt or another program like mbsync. If it's done through
+# mutt then folder, spoolfile, record, postponed, trash, record are set to IMAPS server URL.
+# If it's done through mbsync then those point to local paths.
+
+set folder = "~/Mail/gmail/"
+set spoolfile = "~/Mail/gmail/Inbox"
+set postponed = "~/Mail/gmail/[Gmail]/Drafts"
+set trash = "~/Mail/gmail/[Gmail]/Trash"
+set record = "~/Mail/gmail/[Gmail]/Sent Mail"
+
+# set imap_user = "your_email_address@gmail.com"
+# set imap_pass = "your_password"
+# # folder can be a local dir but for Gmail it's "imaps://imap.gmail.com:993"
+# set folder = "imaps://imap.gmail.com:993"
+# # Folder where emails arrive. The + before those labels means that it's folder + that field.
+# # Look at spoolfile and postponed. One is absolute one is relative.
+# set spoolfile = "imaps://imap.gmail.com:993/INBOX"
+# set postponed = "+[Gmail]/Drafts"
+# set trash = "+[Gmail]/Trash"
+# set record = "+[Gmail]/Sent Mail"
 
 bind index G imap-fetch-mail
 set editor = "kak"
@@ -41,7 +49,7 @@ bind index,pager \CO sidebar-open
 # Check for unread, flagged, total messages count.
 set mail_check_stats
 
-mailboxes +INBOX +Work +Shopping +[Gmail]/Trash
+mailboxes +INBOX +Work +Shopping +[Gmail]/Trash "+[Gmail]/Sent Mail"
 
 
 # From Google's website:
