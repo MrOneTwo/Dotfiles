@@ -49,7 +49,11 @@ bind index,pager \CO sidebar-open
 # Check for unread, flagged, total messages count.
 set mail_check_stats
 
-mailboxes +INBOX +Work +Shopping +[Gmail]/Trash "+[Gmail]/Sent Mail"
+# Old mutt sidebar.
+#mailboxes +INBOX +Work +Shopping +[Gmail]/Trash "+[Gmail]/Sent Mail"
+# Neomutt sidebar. Mind you that this is reflected by the directory created by mbsync.
+named-mailboxes "Inbox" =Inbox
+named-mailboxes "Work" =Work
 
 
 # From Google's website:

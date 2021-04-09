@@ -34,6 +34,7 @@ SubFolders Verbatim
 # The trailing "/" is important
 Inbox ~/Mail/gmail/Inbox
 Path ~/Mail/gmail/
+Trash ~/Mail/gmail/[Gmail]/Trash
 
 #
 # CHANNELS SECTION
