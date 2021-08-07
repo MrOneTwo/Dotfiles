@@ -84,6 +84,8 @@ hook global NormalIdle .* %{
 add-highlighter global/ dynregex '%opt{curword}' 0:CurWord
 
 map global normal '#' :comment-line<ret>
+# ,y to copy to clipboard. Comma enters user mode.
+map global user y '<a-|>xclip -i -selection clipboard<ret>' -docstring "Yank to system clipboard"
 
 plug "https://github.com/TeddyDD/kakoune-wiki" config %{
   wiki-setup '/home/mc/Desktop/wiki'
