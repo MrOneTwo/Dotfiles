@@ -5,7 +5,8 @@ file_path=$2/$1
 kak -clear
 # Grab the first session from the list. You can name your session 'a' to
 # be sure it'll be always used.
-SESSION=`kak -l | tr '\n' '\t' | awk '{print $1}'`
+# SESSION=`kak -l | tr '\n' '\t' | awk '{print $1}'`
+SESSION=dev
 echo $SESSION
 
 # The client is still hardcoded to 'L'.
