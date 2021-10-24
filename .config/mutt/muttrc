@@ -27,6 +27,8 @@ set postponed = "~/Mail/gmail/[Gmail]/Drafts"
 set trash = "~/Mail/gmail/[Gmail]/Trash"
 set record = "~/Mail/gmail/[Gmail]/Sent Mail"
 
+# Here is an example of folders set for a setup where mails stay on server - mutt only setup.
+
 # set imap_user = "your_email_address@gmail.com"
 # set imap_pass = "your_password"
 # # folder can be a local dir but for Gmail it's "imaps://imap.gmail.com:993"
