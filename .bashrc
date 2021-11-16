@@ -134,6 +134,8 @@ export PAGER=less
 # This uses fzy for inserting files in the command line, instead of fzf.
 fzy-file-widget() {
   local selected_path=$(find * -type f | fzy) || return
+  # '${var:offset:length}' format is to extract substring from offset with length. The length
+  # can be omitted.
   READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected_path${READLINE_LINE:$READLINE_POINT}"
   # '${#selected_path}' is there to calculate length of 'selected_path'
   READLINE_POINT=$(( READLINE_POINT + ${#selected_path} ))
