@@ -130,3 +130,13 @@ export NNN_BMS='d:~/Desktop;o:~/Downloads/'
 export NNN_PLUG='h:hexview;v:imgview;m:-mediainf;k:kak_open;c:clangformat'
 
 export PAGER=less
+
+# This uses fzy for inserting files in the command line, instead of fzf.
+fzy-file-widget() {
+  local selected_path=$(find * -type f | fzy) || return
+  READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected_path${READLINE_LINE:$READLINE_POINT}"
+  # '${#selected_path}' is there to calculate length of 'selected_path'
+  READLINE_POINT=$(( READLINE_POINT + ${#selected_path} ))
+}
+
+bind -m emacs-standard -x '"\C-t": fzy-file-widget'
