@@ -138,6 +138,7 @@ fzy-file-widget() {
   # can be omitted.
   READLINE_LINE="${READLINE_LINE:0:$READLINE_POINT}$selected_path${READLINE_LINE:$READLINE_POINT}"
   # '${#selected_path}' is there to calculate length of 'selected_path'
+  # This puts the cursor after the pasted path.
   READLINE_POINT=$(( READLINE_POINT + ${#selected_path} ))
 }
 
