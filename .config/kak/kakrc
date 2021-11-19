@@ -3,6 +3,8 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 # Install this to get readtags
 # Void Linux, install: automake
 # https://github.com/universal-ctags/ctags
+#
+# - ${...} - command expansion (using the same commands as when you do :command)
 
 set global tabstop     2
 set global indentwidth 2
@@ -11,7 +13,8 @@ set global indentwidth 2
 # See x11.kak to see its options.
 hook global ModuleLoaded x11 %{
     # You can print this variable with :echo %opt{termcmd}
-    # In the shell expansion you refer to this option with kak_opt_termcmd.
+    # In the shell expansion (%sh{...}) you refer to this option with kak_opt_termcmd.
+    # https://github.com/mawww/kakoune/blob/master/doc/pages/expansions.asciidoc
     set-option global termcmd "sakura -x"
 }
 
