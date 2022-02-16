@@ -78,6 +78,7 @@ hook global BufNewFile .* %{ editorconfig-load }
 # Column marker.
 hook global WinSetOption filetype=(markdown) %{
   add-highlighter global/ column 100 default,rgb:666688
+  add-highlighter global/ wrap -word -width 100
 }
 
 # Highlight the word under the cursor.
@@ -98,10 +99,6 @@ add-highlighter global/ dynregex '%opt{curword}' 0:CurWord
 map global normal '#' :comment-line<ret>
 # ,y to copy to clipboard. Comma enters user mode.
 map global user y '<a-|>xclip -i -selection clipboard<ret>' -docstring "Yank to system clipboard"
-
-plug "https://github.com/TeddyDD/kakoune-wiki" config %{
-  wiki-setup '/home/mc/Desktop/wiki'
-}
 
 plug "https://github.com/alexherbo2/snippets" config %{
 }
