@@ -77,7 +77,8 @@ hook global BufNewFile .* %{ editorconfig-load }
 
 # Column marker.
 hook global WinSetOption filetype=(markdown) %{
-  add-highlighter global/ column 100 default,rgb:666688
+  # We can't have duplicate highlighters so comment this out since we have a column on 100 in global scope.
+  # add-highlighter global/ column 100 default,rgb:666688
   add-highlighter global/ wrap -word -width 100
 }
 
