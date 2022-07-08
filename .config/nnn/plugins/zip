@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+
+# Description: zip selected files
+#
+# Shell: POSIX compliant
+# Authors: Michal Ciesielski
+
+file_path=$2/$1
+
+. "$(dirname "$0")"/.nnn-plugin-helper
+
+if [ -s "$selection" ]; then
+    arr=$(tr '\0' '\n' < "$selection")
+    zip $(basename "$PWD").zip $arr
+
+    # Clear selection
+    if [ -p "$NNN_PIPE" ]; then
+        printf "-" > "$NNN_PIPE"
+    fi
+fi
