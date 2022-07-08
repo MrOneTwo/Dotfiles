@@ -17,4 +17,6 @@ if [ -s "$selection" ]; then
     if [ -p "$NNN_PIPE" ]; then
         printf "-" > "$NNN_PIPE"
     fi
+else
+    zip $(basename "$PWD").zip $file_path
 fi
