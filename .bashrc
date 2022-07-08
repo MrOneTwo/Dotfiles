@@ -134,7 +134,7 @@ export LESS="--RAW-CONTROL-CHARS"
 export NNN_BMS='d:~/Desktop;o:~/Downloads/'
 export NNN_PLUG='h:hexview;v:imgview;m:-mediainf;k:kak_open;c:clangformat'
 
-export PAGER=less
+export PAGER='less -r'
 
 # This uses fzy for inserting files in the command line, instead of fzf.
 fzy-file-widget() {
