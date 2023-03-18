@@ -3,7 +3,9 @@ set ssl_force_tls = yes
 set use_from = yes
 set envelope_from = yes
 
-## Send options.
+#
+# Send options.
+#
 # The SMTP url needs address@hostname@smtp.hostname format (at least this is
 # true for Gmail and purelymail).
 set smtp_url = "smtp://your_email_address@gmail.com@smtp.gmail.com:465"
@@ -11,8 +13,8 @@ set smtp_pass = "your_password"
 set realname = "Name Surname"
 set from = your_email_address@gmail.com
 set hostname = gmail.com
-# List of authenticators.
-set smtp_authenticators = 'login:digest-md5
+# List of authenticators. These depend on different libraries.
+set smtp_authenticators = 'login:digest-md5'
 
 #
 # Receive options.
