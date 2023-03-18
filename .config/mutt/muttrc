@@ -19,8 +19,9 @@ set smtp_authenticators = 'login:digest-md5'
 #
 # Receive options.
 #
-# Receiving from IMAP can be done via mutt or another program like mbsync. If it's done through
-# mutt then folder, spoolfile, record, postponed, trash, record are set to IMAPS server URL.
+# Receiving from IMAP can be done via mutt or another program like mbsync.
+# If it's done through mutt then folder, spoolfile, record, postponed,
+# trash, record are set to IMAPS server URL.
 # If it's done through mbsync then those point to local paths.
 
 set folder = "~/Mail/gmail/"
