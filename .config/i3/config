@@ -186,3 +186,7 @@ bar {
 }
 
 exec --no-startup-id feh --bg-center ~/Pictures/wallhaven-39vk3v_1920x1080.png
+
+# This can be used with sakura by running `sakura --class='floater'`. That way kakoune can spawn
+# floating windows, instead of tiling ones.
+for_window [class="floater"] floating enable
