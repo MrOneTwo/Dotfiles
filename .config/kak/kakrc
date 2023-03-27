@@ -15,7 +15,9 @@ hook global ModuleLoaded x11 %{
     # You can print this variable with :echo %opt{termcmd}
     # In the shell expansion (%sh{...}) you refer to this option with kak_opt_termcmd.
     # https://github.com/mawww/kakoune/blob/master/doc/pages/expansions.asciidoc
-    set-option global termcmd "sakura -x"
+    # Override the termcmd, created in the rc/windowing/x11.kak. Be sure not to put flags
+    # after `-x` because it'll treat those like a command to execute.
+    set-option global termcmd "sakura --class=floater -x"
 }
 
 define-command -hidden -params 1.. bspwm-new-impl %{
