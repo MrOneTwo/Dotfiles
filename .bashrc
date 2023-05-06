@@ -180,7 +180,7 @@ bind -m emacs-standard -x '"\C-t": fzy-file-widget'
 promptFunc() {
   # right before prompting for the next command, save the previous
   # command in a file.
-  echo "$(date +%Y-%m-%d--%H-%M-%s) $(hostname) $PWD $(history 1)"\
+  echo "$(date +%Y-%m-%d--%H-%M-%S) $(hostname) $PWD $(history 1)"\
     >> ~/.full_history
 }
 PROMPT_COMMAND=promptFunc
