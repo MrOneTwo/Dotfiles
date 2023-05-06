@@ -175,3 +175,22 @@ fzy-file-widget() {
 }
 
 bind -m emacs-standard -x '"\C-t": fzy-file-widget'
+
+# Log the shell commands better. Taken from https://www.jefftk.com/p/you-should-be-logging-shell-history
+promptFunc() {
+  # right before prompting for the next command, save the previous
+  # command in a file.
+  echo "$(date +%Y-%m-%d--%H-%M-%s) $(hostname) $PWD $(history 1)"\
+    >> ~/.full_history
+}
+PROMPT_COMMAND=promptFunc
+
+function histgrep {
+  local n_lines=10
+  if [[ "$1" =~ ^[0-9]*$ ]]; then
+    n_lines="$1"
+    shift
+  fi
+  grep "$@" ~/.full_history | tail -n "$n_lines"
+}
+
