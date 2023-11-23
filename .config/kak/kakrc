@@ -93,8 +93,7 @@ hook global WinSetOption filetype=(markdown) %{
 
 # Highlight the word under the cursor.
 # declare-option -hidden regex curword
-# set-face global CurWord default,rgb:4a4a4a
-set-face global CurWord +b
+set-face global CurWord +bu
 
 # Highlight the words on which the cursor is.
 hook global NormalIdle .* %{
