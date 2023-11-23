@@ -119,8 +119,8 @@ hook global ModeChange .*:.*:insert %{
 }
 
 hook global ModeChange .*:insert:.* %{ try %{
-  set-face window PrimaryCursor
-  set-face window PrimaryCursorEol
+  unset-face window PrimaryCursor
+  unset-face window PrimaryCursorEol
 } }
 
 map global normal '#' :comment-line<ret>
