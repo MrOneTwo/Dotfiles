@@ -5,6 +5,8 @@ source "%val{config}/plugins/plug.kak/rc/plug.kak"
 # https://github.com/universal-ctags/ctags
 #
 # - ${...} - command expansion (using the same commands as when you do :command)
+# - evaluate-commands - evaluates its given paramets as if they were entered in the command prompt
+# - execute-keys - runs keys as if they were pressed
 
 set global tabstop     2
 set global indentwidth 2
