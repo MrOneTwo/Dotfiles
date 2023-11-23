@@ -24,6 +24,7 @@ hook global ModuleLoaded x11 %{
 }
 
 define-command -hidden -params 1.. bspwm-new-impl %{
+  # Run a shell script and use the output in the command prompt (because of the evaluate-commands).
   evaluate-commands %sh{
     if [ -z "$kak_opt_termcmd" ]; then
       echo "echo -markup '{Error}termcmd option is not set'"
@@ -87,20 +88,41 @@ hook global WinSetOption filetype=(markdown) %{
   add-highlighter global/ wrap -word -width 100
 }
 
+# Highlight the word under the cursor
+# -----------------------------------
+
 # Highlight the word under the cursor.
-declare-option -hidden regex curword
-set-face global CurWord default,rgb:4a4a4a
+# declare-option -hidden regex curword
+# set-face global CurWord default,rgb:4a4a4a
+set-face global CurWord +b
 
 # Highlight the words on which the cursor is.
 hook global NormalIdle .* %{
   eval -draft %{ try %{
-    exec <space><a-i>w <a-k>\A\w+\z<ret>
-    set-option buffer curword "\b\Q%val{selection}\E\b"
+    # \A matches the beginning of a string
+    # \z matches the end of a string
+    execute-keys ,<a-i>w <a-k>\A\w+\z<ret>
+    add-highlighter -override global/curword regex "\b\Q%val{selection}\E\b" 0:CurWord
   } catch %{
-    set-option buffer curword ''
+    add-highlighter -override global/curword group
   } }
 }
-add-highlighter global/ dynregex '%opt{curword}' 0:CurWord
+
+
+# Switch cursor color in insert mode
+# ----------------------------------
+
+set-face global InsertCursor default,green+B
+
+hook global ModeChange .*:.*:insert %{
+  set-face window PrimaryCursor InsertCursor
+  set-face window PrimaryCursorEol InsertCursor
+}
+
+hook global ModeChange .*:insert:.* %{ try %{
+  set-face window PrimaryCursor
+  set-face window PrimaryCursorEol
+} }
 
 map global normal '#' :comment-line<ret>
 # ,y to copy to clipboard. Comma enters user mode.
