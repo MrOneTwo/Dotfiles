@@ -88,6 +88,16 @@ hook global WinSetOption filetype=(markdown) %{
   add-highlighter global/ wrap -word -width 100
 }
 
+# Reformat file
+# -----------------------------------
+
+# Select entire buffer and pipe it to clang-format, then
+# return to line you're on.
+define-command clang-format-cursor %{
+  execute-keys -draft <percent>| "clang-format-11" <ret>
+  execute-keys -draft %val{cursor_line}g
+}
+
 # Highlight the word under the cursor
 # -----------------------------------
 
