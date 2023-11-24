@@ -88,6 +88,11 @@ hook global WinSetOption filetype=(markdown) %{
   add-highlighter global/ wrap -word -width 100
 }
 
+# Underline last search
+# -----------------------------------
+set-face global CurSearch +u
+hook global RegisterModified '/' %{ add-highlighter -override global/search regex "%reg{/}" 0:CurSearch }
+
 # Whitespace
 # -----------------------------------
 add-highlighter global/ show-whitespaces -tab '|' -tabpad '╌'
