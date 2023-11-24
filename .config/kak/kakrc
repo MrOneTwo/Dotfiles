@@ -88,6 +88,10 @@ hook global WinSetOption filetype=(markdown) %{
   add-highlighter global/ wrap -word -width 100
 }
 
+# Whitespace
+# -----------------------------------
+add-highlighter global/ show-whitespaces -tab '|' -tabpad '╌'
+
 # Reformat file
 # -----------------------------------
 
