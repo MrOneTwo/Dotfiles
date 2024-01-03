@@ -78,3 +78,5 @@ named-mailboxes "Work" =Work
 # * LIST (\HasNoChildren \Flagged) "/" "[Gmail]/Starred"
 # * LIST (\HasNoChildren \Trash) "/" "[Gmail]/Trash"
 # a004 OK Success
+
+source colors.muttrc
