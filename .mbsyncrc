@@ -1,17 +1,6 @@
 # I suggest doing man mbsync if in doubt.
-
-#
-# IMAP SECTION
-#
-IMAPAccount gmail
-# Address to connect to
-Host imap.gmail.com
-User your_email_address@gmail.com
-Pass your_password
-# To store the password in an encrypted file use PassCmd instead of Pass
-#PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass.gpg"
-# or
-#PassCmd "pass email/purely"
+# There are two basic object classes: Stores and Channels.
+# Store is a folder, local or remote. A Channel connects two Stores.
 
 
 # Use SSL
@@ -21,27 +10,45 @@ CertificateFile /etc/ssl/certs/ca-certificates.crt
 #CertificateFile ~/.cert/imap.gmail.com.pem
 #CertificateFile ~/.cert/Equifax_Secure_CA.pem
 
-#
-# IMAP STORES SECTION
-#
-# Name for the IMAP Store.
+
+# --- IMAP SECTION -----------------------------
+
+IMAPAccount gmail
+# Address to connect to
+Host imap.gmail.com
+User your_email_address@gmail.com
+Pass your_password
+# To store the password in an encrypted file use PassCmd instead of Pass
+#PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mailpass.gpg"
+# or
+#PassCmd "pass email/purely"
+# ----------------------------------------------
+
+
+# --- IMAP STORES SECTION ----------------------
+
+# Open a section for Store.
 IMAPStore gmail-remote
 # Refer to the IMAPAccount.
 Account gmail
+# ----------------------------------------------
 
-#
-# MAILDIR STORES SECTION
-#
+
+# --- MAILDIR STORES SECTION -------------------
+
+# Open a section for a Store.
 MaildirStore gmail-local
 SubFolders Verbatim
 # The trailing "/" is important
 Inbox ~/Mail/gmail/Inbox
 Path ~/Mail/gmail/
 Trash ~/Mail/gmail/[Gmail]/Trash
+# ----------------------------------------------
 
-#
-# CHANNELS SECTION
-#
+
+# --- CHANNELS SECTION -------------------------
+
+# Open a section for a Channel.
 Channel gmail
 Master :gmail-remote:
 Slave  :gmail-local:
@@ -54,3 +61,4 @@ Create Both
 # Save the synchronization state files in the relevant directory
 SyncState *
 Sync All
+# ----------------------------------------------
