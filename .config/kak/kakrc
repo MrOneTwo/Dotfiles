@@ -81,6 +81,12 @@ plug "danr/kakoune-easymotion" config %{
 hook global BufOpenFile .* %{ editorconfig-load }
 hook global BufNewFile .* %{ editorconfig-load }
 
+
+hook global WinCreate .*\.beancount %{
+  set-option window formatcmd 'perl -i.bkp reformat.pl'
+  hook window BufWritePre .* %{format}
+}
+
 # Column marker.
 hook global WinSetOption filetype=(markdown) %{
   # We can't have duplicate highlighters so comment this out since we have a column on 100 in global scope.
