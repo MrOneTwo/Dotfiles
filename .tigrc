@@ -1,0 +1,5 @@
+# Show commit statistics for the author under the cursor
+bind main U +sh -c 'git --no-pager shortlog -s --author="$(git show -s --format=%aE %(commit))" </dev/tty'
+
+# '!' - external command, '?' - confirms command before it runs
+bind main a !?git commit --amend %(commit)
