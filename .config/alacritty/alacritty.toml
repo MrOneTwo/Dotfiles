@@ -1,0 +1,21 @@
+[window]
+
+# opacity = 0.9
+
+padding.x = 4
+padding.y = 4
+
+decorations = "Full"
+decorations_theme_variant = "Dark" # "Dark"
+
+[font]
+
+normal.family = "Ubuntu Mono"
+bold.family = "Ubuntu Mono"
+italic.family = "Ubuntu Mono"
+bold_italic.family = "Ubuntu Mono"
+
+size = 10.0
+
+[colors.primary]
+background = "#111111"
