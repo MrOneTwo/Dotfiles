@@ -8,12 +8,19 @@ case $- in
       *) return;;
 esac
 
-COL_GRAY="\[\$(tput setaf 7)\]"
+alias ll='ls -la --color=auto'
+alias ls='ls --color=auto'
+#PS1='[\u@\h \W]\$ '
+COL_BLACK="\[\$(tput setaf 0)\]"
 COL_RED="\[\$(tput setaf 1)\]"
 COL_GREEN="\[\$(tput setaf 2)\]"
+COL_YELLOW="\[\$(tput setaf 3)\]"
 COL_BLUE="\[\$(tput setaf 4)\]"
+COL_MAGENTA="\[\$(tput setaf 5)\]"
+COL_CYAN="\[\$(tput setaf 6)\]"
+COL_WHITE="\[\$(tput setaf 7)\]"
 RESET="\[\$(tput sgr0)\]"
-export PS1="\u${COL_GRAY}@${RESET}\h ${COL_GRAY}\w${RESET} \$([ \j -gt 0 ] && echo '(\j) ' )"
+export PS1="\u${COL_ALSO}@${RESET}${COL_YELLOW}\h${RESET} ${COL_GRAY}\w${RESET} \$([ \j -gt 0 ] && echo '(\j) ' )"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
