@@ -123,7 +123,8 @@ hook global WinSetOption filetype=(markdown) %{
 # Underline last search
 # -----------------------------------
 set-face global CurSearch +u
-hook global RegisterModified '/' %{ add-highlighter -override global/search regex "%reg{/}" 0:CurSearch }
+#hook global RegisterModified '/' %{ add-highlighter -override global/search regex "%reg{/}" 0:CurSearch }
+add-highlighter global/ dynregex '%reg{/}' 0:CurSearch
 
 # Whitespace
 # -----------------------------------
