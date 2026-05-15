@@ -82,10 +82,28 @@ plug "danr/kakoune-easymotion" config %{
 hook global BufOpenFile .* %{ editorconfig-load }
 hook global BufNewFile .* %{ editorconfig-load }
 
+# Column marker.
+hook global WinSetOption filetype=(markdown) %{
+  # We can't have duplicate highlighters so comment this out since we have a column on 100 in global scope.
+  # add-highlighter global/ column 100 default,rgb:666688
+  add-highlighter global/ wrap -word -width 100
+}
+
+# Beancount ledger
+# -----------------------------------
+
+define-command beancount-insert-expense -docstring "Insert a blank expense template" %{
+  evaluate-commands %sh{
+    today=$(date +%Y/%m/%d)
+    printf "execute-keys 'i%s * \"\" \"\"<ret>  Expenses:<esc>4h'" "$today"
+  }
+}
 
 hook global WinCreate .*\.beancount %{
   set-option window formatcmd 'perl -i.bkp reformat.pl'
   hook window BufWritePre .* %{format}
+
+  map window user i ':beancount-insert-expense<ret>' -docstring "beancount insert"
 }
 
 # Column marker.
