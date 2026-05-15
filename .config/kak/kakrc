@@ -95,7 +95,7 @@ hook global WinSetOption filetype=(markdown) %{
 define-command beancount-insert-expense -docstring "Insert a blank expense template" %{
   evaluate-commands %sh{
     today=$(date +%Y/%m/%d)
-    printf "execute-keys 'i%s * \"\" \"\"<ret>%*sAssets:Hndl  -0.00 SEK<ret>%*sExpenses:FIXME  -0.00 SEK<esc>'" "$today" 4 "" 4 ""
+    printf "execute-keys 'I%s * \"\" \"\"<ret>%*sAssets:Hndl        -VALUE SEK<ret>%*sExpenses:Food:Home  VALUE SEK<esc>KxsVALUE<ret>c'" "$today" 4 "" 4 ""
   }
 }
 
@@ -105,8 +105,10 @@ hook global WinCreate .*\.beancount %{
   set-option window formatcmd 'perl -i.bkp reformat.pl'
   hook window BufWritePre .* %{format}
 
-  map window normal <space> ':enter-user-mode beancount -lock<ret>'
+  map window normal <space> ':enter-user-mode beancount<ret>'
+  map window beancount y '<a-|>xclip -i -selection clipboard<ret>' -docstring "yank to system clipboard"
   map window beancount i ':beancount-insert-expense<ret>' -docstring "beancount insert"
+  map window beancount n '(^\d{4}\/\d{2}\/\d{2}\s.*)(\n(?!^\d{4}\/\d{2}\/\d{2}).*)*<ret>' -docstring "select current transaction block"
 }
 
 # Markdown
