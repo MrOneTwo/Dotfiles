@@ -95,18 +95,23 @@ hook global WinSetOption filetype=(markdown) %{
 define-command beancount-insert-expense -docstring "Insert a blank expense template" %{
   evaluate-commands %sh{
     today=$(date +%Y/%m/%d)
-    printf "execute-keys 'i%s * \"\" \"\"<ret>  Expenses:<esc>4h'" "$today"
+    printf "execute-keys 'i%s * \"\" \"\"<ret>%*sAssets:Hndl  -0.00 SEK<ret>%*sExpenses:FIXME  -0.00 SEK<esc>'" "$today" 4 "" 4 ""
   }
 }
+
+declare-user-mode beancount
 
 hook global WinCreate .*\.beancount %{
   set-option window formatcmd 'perl -i.bkp reformat.pl'
   hook window BufWritePre .* %{format}
 
-  map window user i ':beancount-insert-expense<ret>' -docstring "beancount insert"
+  map window normal <space> ':enter-user-mode beancount -lock<ret>'
+  map window beancount i ':beancount-insert-expense<ret>' -docstring "beancount insert"
 }
 
-# Column marker.
+# Markdown
+# -----------------------------------
+
 hook global WinSetOption filetype=(markdown) %{
   # We can't have duplicate highlighters so comment this out since we have a column on 100 in global scope.
   # add-highlighter global/ column 100 default,rgb:666688
