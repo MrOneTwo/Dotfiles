@@ -95,7 +95,7 @@ hook global WinSetOption filetype=(markdown) %{
 define-command beancount-insert-expense -docstring "Insert a blank expense template" %{
   evaluate-commands %sh{
     today=$(date +%Y/%m/%d)
-    printf "execute-keys 'I%s * \"\" \"\"<ret>%*sAssets:Hndl        -VALUE SEK<ret>%*sExpenses:Food:Home  VALUE SEK<esc>KxsVALUE<ret>c'" "$today" 4 "" 4 ""
+    printf "execute-keys 'I%s * \"\" \"Food for home\"<ret>%*sAssets:Hndl        -VALUE SEK<ret>%*sExpenses:Food:Home  VALUE SEK<esc>KxsVALUE<ret>c'" "$today" 4 "" 4 ""
   }
 }
 
