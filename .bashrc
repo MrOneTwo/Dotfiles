@@ -111,6 +111,18 @@ alias gcm='git checkout master'
 alias gc-='git checkout -'
 alias gca='git commit --amend'
 
+# create a fixup commit with an interactive commit picking
+gfu() {
+  local commit
+  commit=$(git log --oneline --color=always "$@" | 
+    fzf --ansi \
+        --no-sort \
+        --reverse \
+        --preview 'git show --color=always {1}' \
+        --preview-window=right:60%:wrap) &&
+  git commit --fixup=$(echo "$commit" | awk '{print $1}')
+}
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
