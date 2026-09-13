@@ -100,7 +100,8 @@ define-command beancount-insert-expense -docstring "Insert a blank expense templ
 }
 
 define-command beancount-select-entry -docstring "..." %{
-  execute-keys gl<a-a>c^\d{4}[/-]\d{2}[/-]\d{2},(?:\d{4}/)<ret><s-b><s-b><s-e>vv
+  #                                             terminate before next date or before an empty line
+  execute-keys gl<a-a>c^\d{4}[/-]\d{2}[/-]\d{2},(?:\d{4}/|\n\n)<ret><s-b><s-b><s-e>vv
 }
 
 declare-user-mode beancount
