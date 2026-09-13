@@ -117,7 +117,7 @@ hook global WinCreate .*\.beancount %{
 
   #                        select up to the next 'nnnn/nn/nn * '
   map global normal <c-n> ']c^\d{4}[/-]\d{2}[/-]\d{2} \* ,^\d{4}[/-]\d{2}[/-]\d{2} \* <ret>l:beancount-select-entry<ret>x'
-  map global normal <c-p> '[c^\d{4}[/-]\d{2}[/-]\d{2} \* ,^\d{4}[/-]\d{2}[/-]\d{2} \* <ret>:beancount-select-entry<ret>'
+  map global normal <c-p> '[c^\d{4}[/-]\d{2}[/-]\d{2} \* ,^\d{4}[/-]\d{2}[/-]\d{2} \* <ret>:beancount-select-entry<ret><a-;>x'
 }
 
 # Markdown
