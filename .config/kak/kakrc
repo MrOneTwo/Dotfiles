@@ -99,8 +99,8 @@ define-command beancount-insert-expense -docstring "Insert a blank expense templ
   }
 }
 
-define-command beancount-select-next -docstring "..." %{
-  execute-keys  <a-a>c^\d{4}[/-]\d{2}[/-]\d{2},(?:\d{4}/)<ret>HHHHH
+define-command beancount-select-entry -docstring "..." %{
+  execute-keys  <a-a>c^\d{4}[/-]\d{2}[/-]\d{2},(?:\d{4}/)<ret><s-b><s-b><s-e>vv
 }
 
 declare-user-mode beancount
@@ -113,9 +113,10 @@ hook global WinCreate .*\.beancount %{
   map window beancount y '<a-|>xclip -i -selection clipboard<ret>' -docstring "yank to system clipboard"
   map window beancount i ':beancount-insert-expense<ret>' -docstring "beancount insert"
   # select around using data for the start cursor and date for the end cursor + 5 caharacters back.
-  map window beancount n ':beancount-select-next<ret>' -docstring "select current transaction block"
+  map window beancount n ':beancount-select-entry<ret>' -docstring "select current transaction block"
 
-  map global normal <c-n> 'j:beancount-select-next<ret>'
+  map global normal <c-n> 'j:beancount-select-entry<ret>'
+  map global normal <c-p> ':beancount-select-entry<ret><a-;>k:beancount-select-entry<ret>'
 }
 
 # Markdown
